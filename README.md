@@ -7,6 +7,7 @@ This starter kit comes only with preconfigured gulpfile, which compiles ES6 code
 
 How to build
 ------------
+> $ npm install
 > $ gulp
 
 How to run
