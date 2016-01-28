@@ -1,18 +1,27 @@
 {
-  "name": "React Starter Kit",
-  "main": "app.jsx",
-  "author": "Václav Zeman",
-  "license": "MIT",
-  "devDependencies": {
-    "babelify": "^6.1.3",
-    "browserify": "^11.0.1",
-    "gulp": "^3.9.0",
-    "gulp-less": "^3.0.3",
-    "gulp-watch": "^4.3.4",
-    "path": "^0.11.14",
-    "vinyl-source-stream": "^1.1.0"
-  },
-  "dependencies": {
-    "react": "^0.13.3"
-  }
+    "name": "ReactDC",
+    "main": "app.jsx",
+    "author": "Václav Zeman / Danilo Castro",
+    "license": "MIT",
+    "scripts": {
+        "lite": "lite-server",
+        "start": "concurrent \"npm run lite\" "
+    },
+    "dependencies": {
+        "react": "^0.14.6",
+        "react-dom": "^0.14.6",
+        "react-addons-linked-state-mixin": "^0.14.6",
+        "react-addons-pure-render-mixin": "^0.14.6"
+    },
+    "devDependencies": {
+        "concurrently": "^1.0.0",
+        "lite-server": "^1.3.1",
+        "babelify": "^6.1.3",
+        "browserify": "^11.0.1",
+        "gulp": "^3.9.0",
+        "gulp-less": "^3.0.3",
+        "gulp-watch": "^4.3.4",
+        "path": "^0.11.14",
+        "vinyl-source-stream": "^1.1.0"
+    }
 }

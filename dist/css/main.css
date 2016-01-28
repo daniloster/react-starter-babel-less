@@ -1,0 +1,39 @@
+/** Create something beautiful! Or ugly, everything counts. */
+html,
+body {
+  font-family: sans-serif;
+  font-size: x-medium;
+  background: #2d2d2d;
+}
+h2 {
+  font-size: 2em;
+  margin-bottom: 0;
+  color: #61dafb;
+}
+span {
+  font-size: 1.1em;
+  color: white;
+}
+span.main {
+  display: block;
+  margin: 1em 0;
+}
+button {
+  font-size: 1.3em;
+  display: block;
+  margin: .3em 0;
+  padding: .4em 1em;
+  color: white;
+  border: none;
+  border-radius: .25em;
+  outline: none;
+  background: #cc7a6f;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-appearance: none;
+}
+button:active {
+  box-shadow: inset 0 3px 3px rgba(0, 0, 0, 0.4);
+}
+#app {
+  padding: 5vh 5vw;
+}
