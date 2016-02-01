@@ -7,19 +7,16 @@ var gulp = require('gulp'),
     path = require('path');
 
 gulp.task('build', function () {
-    try {
-        browserify({
-            entries: 'src/app.jsx',
-            extensions: ['.jsx'],
-            debug: true
-        })
-            .transform(babelify)
-            .bundle()
-            .pipe(source('bundle.js'))
-            .pipe(gulp.dest('dist'));
-    } catch (e) {
-        console.log('ERROR GULP BUILD', e);
-    }
+    browserify({
+        entries: 'src/app.jsx',
+        extensions: ['.jsx'],
+        debug: true
+    })
+        .transform(babelify)
+        .bundle()
+        .on('error', handleError)
+        .pipe(source('bundle.js'))
+        .pipe(gulp.dest('dist'));
 });
 
 gulp.task('styles', function () {
@@ -31,8 +28,13 @@ gulp.task('styles', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['*.jsx', '*.js'], ['build']);
+    gulp.watch(['**/*.jsx', '*.js'], ['build']);
     gulp.watch(['./less/*.less'], ['styles']);
 });
 
 gulp.task('default', ['build', 'styles']);
+
+function handleError(err) {
+    console.log(err.toString());
+    this.emit('end');
+}

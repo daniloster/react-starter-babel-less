@@ -5,7 +5,7 @@ class CounterComponent extends React.Component {
 		super(props);
 		this.state = { clicked: 0 };
 	}
- 
+  
 	render() {
 		return <section>
 		<h2>Hello,  {this.props.name}. I am an example component.</h2>
@@ -19,4 +19,4 @@ class CounterComponent extends React.Component {
 	}
 }
 
-export default ExampleComponent;
+export default CounterComponent;
