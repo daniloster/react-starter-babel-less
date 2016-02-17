@@ -8,8 +8,11 @@ This starter kit comes with npm scripts, which compiles ES6 code to ES5 via Babe
 Tasks
 ------------
 > $ npm run less-compile
+
 > $ npm run compile-jsx
+
 > $ npm run minify
+
 > $ npm run lite
 
 How to run
