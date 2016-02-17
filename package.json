@@ -8,7 +8,7 @@
     "start": "concurrent \"npm run lite\" \"npm run minify\" \"npm run compile-jsx\" \"npm run less-compile\"",
     "compile-jsx": "node_modules/babel-cli/bin/babel.js --presets react,es2015 src --watch --out-dir dist/pre-build",
     "minify": "node_modules/watchify/bin/cmd.js dist/pre-build/app.js -o \"node_modules/uglify-js/bin/uglifyjs -cm > dist/bundle.js\"",
-    "less-compile": "less-watch-compiler less dist/css main.less"
+    "less-compile": "node_modules/less-watch-compiler/less-watch-compiler.js less dist/css main.less"
   },
   "dependencies": {
     "react": "^0.14.6",
