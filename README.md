@@ -26,6 +26,7 @@ Then, "npm start" execute all the task using concurrently to keep the executing 
 > concurrent "npm run lite" "npm run minify" "npm run compile-jsx" "npm run less-compile"
 
 This command at first time will be executed from the last argument to the first one. Thus, sorted we have:
+
 1. npm run less-compile
 2. npm run compile-jsx
 3. npm run minify
