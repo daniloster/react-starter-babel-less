@@ -4,8 +4,8 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import ComponentMixins from './util/component.mixin';
 import CounterComponent from './counter.component';
-  
- 
+
+
 class App extends ComponentMixins(PureRenderMixin, LinkedStateMixin) {
     constructor() {
         super();

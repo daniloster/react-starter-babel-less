@@ -1,27 +1,30 @@
 {
-    "name": "ReactDC",
-    "main": "app.jsx",
-    "author": "Václav Zeman / Danilo Castro",
-    "license": "MIT",
-    "scripts": {
-        "lite": "lite-server",
-        "start": "concurrent \"npm run lite\" "
-    },
-    "dependencies": {
-        "react": "^0.14.6",
-        "react-dom": "^0.14.6",
-        "react-addons-linked-state-mixin": "^0.14.6",
-        "react-addons-pure-render-mixin": "^0.14.6"
-    },
-    "devDependencies": {
-        "concurrently": "^1.0.0",
-        "lite-server": "^1.3.1",
-        "babelify": "^6.1.3",
-        "browserify": "^11.0.1",
-        "gulp": "^3.9.0",
-        "gulp-less": "^3.0.3",
-        "gulp-watch": "^4.3.4",
-        "path": "^0.11.14",
-        "vinyl-source-stream": "^1.1.0"
-    }
+  "name": "ReactDC",
+  "main": "app.jsx",
+  "author": "Václav Zeman / Danilo Castro",
+  "license": "MIT",
+  "scripts": {
+    "lite": "lite-server",
+    "start": "concurrent \"npm run lite\" \"npm run minify\" \"npm run compile-jsx\" \"npm run less-compile\"",
+    "compile-jsx": "node_modules/babel-cli/bin/babel.js --presets react,es2015 src --watch --out-dir dist/pre-build",
+    "minify": "node_modules/watchify/bin/cmd.js dist/pre-build/app.js -o \"node_modules/uglify-js/bin/uglifyjs -cm > dist/bundle.js\"",
+    "less-compile": "less-watch-compiler less dist/css main.less"
+  },
+  "dependencies": {
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-addons-linked-state-mixin": "^0.14.6",
+    "react-addons-pure-render-mixin": "^0.14.6"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.5.1",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-preset-react": "^6.5.0",
+    "uglify-js": "^2.6.1",
+    "less": "^2.6.0",
+    "less-watch-compiler": "^1.1.4",
+    "concurrently": "^1.0.0",
+    "lite-server": "^1.3.1",
+    "watchify": "^3.7.0"
+  }
 }
