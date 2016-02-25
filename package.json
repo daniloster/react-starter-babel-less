@@ -1,30 +1,53 @@
 {
-  "name": "ReactDC",
+  "name": "ReactStartKit",
   "main": "app.jsx",
-  "author": "Václav Zeman / Danilo Castro",
+  "author": "Danilo Castro / Václav Zeman",
   "license": "MIT",
   "scripts": {
     "lite": "lite-server",
-    "start": "concurrent \"npm run lite\" \"npm run minify\" \"npm run compile-jsx\" \"npm run less-compile\"",
-    "compile-jsx": "node_modules/babel-cli/bin/babel.js --presets react,es2015 src --watch --out-dir dist/pre-build",
-    "minify": "node_modules/watchify/bin/cmd.js dist/pre-build/app.js -o \"node_modules/uglify-js/bin/uglifyjs -cm > dist/bundle.js\"",
-    "less-compile": "node_modules/less-watch-compiler/less-watch-compiler.js less dist/css main.less"
+    "start": "concurrent \"npm run lite\" \"npm run minify-w\" \"npm run compile-jsx-w\" \"npm run less-compile-w\"",
+    "compile-jsx-w": "node_modules/babel-cli/bin/babel.js --source-maps --presets react,es2015 src --watch --out-dir dist/pre-build",
+    "minify-w": "node_modules/watchify/bin/cmd.js dist/pre-build/*.js -o dist/bundle.js -dv --in-source-map dist/pre-build/app.js.map",
+    "less-compile-w": "node_modules/less-watch-compiler/less-watch-compiler.js less dist/css main.less",
+    "test": "npm run compile-jsx && npm run bundlify && npm run less-compile && npm run lite && npm run test-cucumber-es",
+    "compile-jsx": "node_modules/babel-cli/bin/babel.js --source-maps --presets react,es2015 src --out-dir dist/pre-build",
+    "minify": "node_modules/uglify-js/bin/uglifyjs dist/pre-build/app.js > dist/bundle.js --in-source-map dist/pre-build/app.js.map --source-map dist/bundle.js.map",
+    "bundlify": "node_modules/browserify/bin/cmd.js dist/pre-build/*.js > static/bundle.js",
+    "less-compile": "node_modules/less/bin/lessc less/main.less dist/css/main.css",
+    "eslint-check": "node_modules/eslint/bin/eslint.js src/** --config=./.eslintrc --ext .jsx --fix --output-file dist/test/eslint-report.html",
+    "test-cucumber-es": "node_modules/.bin/babel-node --presets \"react,es2015\" node_modules/.bin/cucumber.js features/**.feature",
+    "reinstall": "npm set progress=false && rm -rf ~/.npm && rm -rf node_modules && time npm install"
   },
   "dependencies": {
     "react": "^0.14.6",
-    "react-dom": "^0.14.6",
     "react-addons-linked-state-mixin": "^0.14.6",
-    "react-addons-pure-render-mixin": "^0.14.6"
+    "react-addons-pure-render-mixin": "^0.14.6",
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.4.0",
+    "react-router": "^2.0.0",
+    "react-router-redux": "^3.0.0",
+    "redux": "^3.3.1"
   },
   "devDependencies": {
     "babel-cli": "^6.5.1",
+    "babel-eslint": "^5.0.0",
     "babel-preset-es2015": "^6.5.0",
     "babel-preset-react": "^6.5.0",
-    "uglify-js": "^2.6.1",
+    "browserify": "^13.0.0",
+    "concurrently": "^1.0.0",
+    "cucumber": "^0.9.4",
+    "eslint": "^2.2.0",
+    "eslint-config-airbnb": "^5.0.1",
+    "eslint-config-defaults": "^9.0.0",
+    "eslint-config-es2015-react": "^0.1.2",
+    "eslint-plugin-react": "^4.0.0",
     "less": "^2.6.0",
     "less-watch-compiler": "^1.1.4",
-    "concurrently": "^1.0.0",
+    "lint": "^1.1.2",
     "lite-server": "^1.3.1",
-    "watchify": "^3.7.0"
+    "redux-devtools": "^3.1.1",
+    "uglify-js": "^2.6.1",
+    "watchify": "^3.7.0",
+    "zombie": "^4.2.1"
   }
 }

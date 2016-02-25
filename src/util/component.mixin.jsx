@@ -1,5 +1,9 @@
 import React from 'react';
 
+/*
+ComponentMixins has been deprecated so, if you wanna bind an input field,
+simple helper functions can handle it. Check input.binding.jsx out!
+*/
 export default function ComponentMixins( ...mixins) {
 
     class MixedComponent extends React.Component { }

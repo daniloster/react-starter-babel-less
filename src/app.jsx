@@ -1,26 +1,41 @@
-import React from 'react';
+import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import PureRenderMixin from 'react-addons-pure-render-mixin';
-import ComponentMixins from './util/component.mixin';
-import CounterComponent from './counter.component';
+import CounterComponent from './components/counter.component';
+import counterStore from './stores/counter.store';
+import {bind} from './util/input.binder';
 
+// https://github.com/reactjs/react-router-redux
 
-class App extends ComponentMixins(PureRenderMixin, LinkedStateMixin) {
-    constructor() {
-        super();
+class App extends Component {
+    constructor(props = {}) {
+        super(props);
         this.state = ({ name: 'Newbie' });
+        counterStore.subscribe(render);
     }
      
 	render() {
-        let example = (<CounterComponent name={this.state.name} />);
+        const {name} = this.state;
+        let counter = (<CounterComponent 
+            name={name} 
+            value={counterStore.getState()} 
+            onCount={() => {counterStore.dispatch({type: 'INCREMENT'});}}/>
+        );
 		return (
             <div>
-                <input type="text" name="username" valueLink={this.linkState('name')} />
-                { example }
+                <input type="text" name="username" 
+                    valueLink={bind(this, 'name')} />
+                { counter }
             </div> 
         ); 
 	}
-} 
+}
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const rootApp = document.getElementById('app');
+function render() {
+    ReactDOM.render(
+        <App />, 
+        rootApp
+    );
+};
+
+render();
